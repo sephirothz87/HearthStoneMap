@@ -31,4 +31,29 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	
+	/**
+	 * @param string $modelClass
+	 * @return AppModel
+	 */
+	public function loadAppModel($modelClass){
+		
+		if(isset($this->{$modelClass})){
+			return $this->{$modelClass};
+		}
+		
+		$this->loadModel($modelClass);
+		$ret = $this->{$modelClass};
+		return $ret;
+	}
+	
+	public function setupAjax(){
+		$this->autoRender = false;
+		$this->View = null;
+		Configure::write('debug',0);
+	}
+	
+	public function isPost(){
+		return $this->request->is("post");
+	}
 }
