@@ -1,4 +1,6 @@
-CREATE TABLE `hearth_stone`.`classes` (
+DROP TABLE IF EXISTS `classes`;
+
+CREATE TABLE `classes` (
   `id` INT NOT NULL,
   `name_cn` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`id`),
